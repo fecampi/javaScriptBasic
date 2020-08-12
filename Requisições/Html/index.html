@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Requisições assíncronas</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+		<script>
+
+			function requisitarPagina(url) {
+				//0 - Limpa Página.
+				document.getElementById('conteudo').innerHTML = ''
+				
+				//1 - Tela de carregando. 
+				document.getElementById('conteudo').innerHTML = 'Carregando...'
+				
+				//2 - Cria objeto XMLHttpRequest
+				let ajax = new XMLHttpRequest();
+				console.log("State: "+ ajax.readyState + " / Status: "+ ajax.status + " - Requisição não iniciada" )
+
+				//3 - Inicio Conexão
+				ajax.open('GET', url)
+				console.log("State: "+ ajax.readyState + " / Status: "+ ajax.status + " - Conexão estabelecida com o servidor" )
+
+				//4 - Fim Requisição
+				ajax.onreadystatechange = () => {
+
+					//4.a - Sucesso
+					if(ajax.readyState == 4 && ajax.status == 200) {
+
+						document.getElementById('conteudo').innerHTML = ajax.responseText
+						console.log("State: "+ ajax.readyState + " / Status: "+ ajax.status + " - Fim Requisição, sucesso.")		
+					}
+
+					//4.b - Erro
+					if(ajax.readyState == 4 && ajax.status == 404) {
+
+						document.getElementById('conteudo').innerHTML = '#404'
+						console.log("State: "+ ajax.readyState + " / Status: "+ ajax.status + " - Fim Requisição, Não encontrado.")
+						
+					}
+				}
+				ajax.send()		
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<!-- Static navbar -->
+	    <nav class="navbar navbar-light bg-light mb-4">
+	      <div class="container">
+	        <div class="navbar-brand mb-0 h1">
+	        	<h3>Requisições síncronas e assíncronas</h3>
+	        </div>
+	      </div>
+	    </nav>
+
+
+	    <div class="container">
+
+	    	<div class="row mb-2 d-flex justify-content-center">
+	    		<div class="col-sm-2 mb-2">
+	    			<a href="#" class="btn btn-success" onclick="requisitarPagina('pagina_conteudo.php')">Página 1</a>
+	    		</div>
+	    		<div class="col-sm-2 mb-2">
+	    			<a href="#" class="btn btn-danger" onclick="requisitarPagina('pagina_inexistente_.html')">Página 2</a>
+	    		</div>
+	   
+	    	</div>
+	    	
+	    	<div class="row">
+		    	<div class="col-md-1"></div>
+
+		    	<div class="col-md-10" id="conteudo"></div>
+		    		
+				<div class="col-md-1"></div>
+			</div>
+
+		</div>	
+	</body>
+</html>

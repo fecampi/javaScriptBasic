@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Eventos</title>
+    <style type="text/css">
+        .caixa {
+            background: #ccc;
+            height: 150px;
+            width: 150px
+        }
+    </style>
+    <script>
+        function acao(evento) {
+            alert(evento)
+        }
+
+    </script>
+
+</head>
+
+<!--Janela-->
+<body onresize="console.log('onresize')" onscroll="console.log('onscroll')">
+
+    <!--EVENTOS-->
+    <!--Teclado-->
+    <h4>Teclado: Quando aperta todas as teclas</h4>
+    <input onkeydown="acao('onkeydown')" type="text">
+
+    <h4>Teclado: Teclas alfabeticas(menos shift etc)</h4>
+    <input onkeypress="acao('onkeypress')" type="text">
+
+    <h4>Teclado: Quando solta todas as tecla</h4>
+    <input onkeyup="acao('onkeyup')" type="text">
+
+    <!--Formulário-->
+    <h4>Formulário:Quando um elemento obtém o foco</h4>
+    <input onfocus="console.log('onfocus')" type="text">
+
+    <h4>Formulário:Quando um elemento perde o foco</h4>
+    <input onblur="console.log('onblur')" type="text">
+
+    <h4>Formulário:Quando um elemento obtém o foco</h4>
+    <input onfocus="console.log('onfocus')" type="text">
+
+    <h4>Formulário:Quando o valor de um elemento foi alterado.</h4>
+    <select onchange="console.log('onchange')">
+        <option>-- Selecione --</option>
+        <option value="1">-- Selecione --</option>
+        <option value="2">-- Selecione --</option>
+    </select>
+
+    <!--mouse-->
+    <h4>Mouse: Um CLick</h4>
+    <div class="caixa" onclick="acao('mouseclick')"></div>
+
+    <h4>Mouse: Dois Clicks</h4>
+    <div class="caixa" ondblclick="acao('ondblclick')"></div>
+
+    <h4>Mouse: Passar em cima</h4>
+    <div class="caixa" onmouseover="acao('onmouseover')"></div>
+
+    <h4>Mouse: Sair de cima</h4>
+    <div class="caixa" onmouseout="acao('onmouseout')"></div>
+
+    <h4>Mouse: Quando liberado sobre o elemento.</h4>
+    <div class="caixa" onmouseup="acao('onmouseup')"></div>
+
+    <!--Eventos inline-->
+    <button onclick="alert('oi')">Evento no Botão Direto</button>
+
+    <!--Evento no arquivo externo-->
+    <button id="btn">Click</button>
+    <button id="btn1" class="button" data-color="red">Red</button>
+    <button id="btn2" class="button" data-color="green">Green</button>
+    <button id="btn3" class="button" data-color="blue">Blue</button>
+
+    <select name="select" id="select">
+        <option value="">Select</option>
+        <option value="option1">option1</option>
+        <option value="option2">option2</option>
+    </select>
+
+    <div class="main">
+        <button id="btn4" class="button">Criar Btn</button>
+    </div>
+
+    <img name="img" id="tux" src="tux.jpeg" alt="imagem" data-info="this is an image">
+
+</body>
+<script>
+    ((win, doc) => {
+        'use strict';
+
+        //(0)Propriedades e atributos contidas no elemento
+        let image = doc.querySelector("#tux");
+        console.log(image.className);
+        console.log(image.dataset.info);
+        console.log(image.attributes);
+        console.log(image.hasAttribute("data-info"));
+        console.log(image.getAttribute("data-info"));
+        console.log(image.setAttribute("data-color", "pink"));
+        image.removeAttribute("id");
+        image.className = 'figuras'
+
+
+        //(1)Seletores
+        //ID
+        let byId = doc.getElementById('btn4');
+        //Classe
+        let byClass = doc.getElementsByClassName('button');
+        //Elemento
+        let byName = doc.getElementsByName('img');
+        //Tag HTML
+        let byTag = doc.getElementsByTagName('div');
+        //Vários elementos pela query
+        let byQueryAll = doc.querySelectorAll('.button');
+        //Querry    <----
+        let btn = doc.querySelector("#btn");
+        let sel = doc.querySelector("#select");
+        let btns = doc.querySelectorAll(".button");
+        let body = doc.querySelector("body");
+        let btn4 = doc.querySelector("#btn4");
+
+        let main = doc.querySelector(".main");
+
+
+        //(2)Eventos
+        btn.addEventListener("click", alertar, false);
+        sel.addEventListener('change', alertar, false);
+        btns.forEach((elem) => elem.addEventListener("click", changeColors, false));
+        main.addEventListener("click", optEvents, false);
+        //(2.1)Eventos coisas criadas(pesado, evitar uso)
+        function optEvents() {
+            (event.target.id === 'btn4') ? createElement() : acao();
+        }
+
+
+        //(3)Funções
+        function alertar(event) {
+            alert(event.target.innerHTML);
+            console.log(event)
+        }
+        function changeColors(event) {
+            body.style.backgroundColor = event.target.dataset.color;
+        }
+        //Objeto criado
+        function createElement(event) {
+            const newButton = doc.createElement("button");
+            newButton.className = "newButton";
+            newButton.innerHTML = 'New Button';
+            main.appendChild(newButton);
+        }
+        function acao(event) {
+            let btnApagar = doc.querySelector(".main");
+            console.log('faz tal coisa')
+        }
+
+
+    })(window, document);
+
+</script>
+
+</html>

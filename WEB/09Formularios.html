@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <title>Título da Página</title>
+
+</head>
+
+<body>
+
+
+    <!--Eventos inline-->
+    <form name="form1" id="form1" method="post" action="controller.php">
+        <input type="text" name="inpText" id="inpText">
+        <br>
+        <textarea name="txtArea" id="txtArea"></textarea>
+        <div id="lengthArea"></div>
+        <input type="checkbox" name="check" id="check" value="confirmation"> Confirmation <br>
+        <input type="radio" name="gender" value="Male"> Male <br>
+        <input type="radio" name="gender" value="Female"> Female <br>
+        <select name="sel" id="sel">
+            <option value="">Select</option>
+            <option value="one">1</option>
+            <option value="two">2</option>
+        </select><br>
+        <button name="btn" id="btn">Submit</button>
+        <div id="msg"></div>
+        <div class="gallery"></div><br>
+        <input type="file" name="img[]" id="img" multiple><br>
+    </form>
+
+
+
+
+
+
+
+</body>
+<script>
+    ((win, doc) => {
+        'use strict';
+
+        //Form
+        let form1 = doc.querySelector('#form1');
+        let msg = doc.querySelector('#msg')
+
+        //Input Text
+        let inpText = doc.querySelector('#inpText');
+        function validateInput(event) {
+            if (event.target.value == "") {
+                msg.innerHTML = 'Preencha o campo do input!';
+            }
+        }
+        inpText.addEventListener('blur', validateInput, false);
+
+        //TextArea
+        let lengthArea = doc.querySelector('#lengthArea');
+        let txtArea = doc.querySelector('#txtArea');
+        function countArea(event) {
+            lengthArea.innerHTML = event.target.textLength;
+            if (event.target.textLength >= 30) {
+                msg.innerHTML = 'Tamanho não permitido!';
+                txtArea.setAttribute('disabled', 'disabled');
+            }
+        }
+        console.log(txtArea);
+        txtArea.addEventListener('blur', validateInput, false);
+        txtArea.addEventListener('keydown', countArea, false);
+
+        //Checkbox
+        let check = doc.querySelector('#check');
+        console.log(check.checked);
+        if (check.checked == false) {
+            msg.innerHTML = 'Aceite os termos!';
+        }
+
+        //Radio
+        let radio = doc.getElementsByName('gender');
+        function radioTest(event) {
+            if (event.target.value == 'Male') {
+                msg.innerHTML = 'Male';
+            } else {
+                msg.innerHTML = 'Female';
+            }
+        }
+        radio.forEach((elem) => elem.addEventListener('click', radioTest, false));
+
+        //Select
+        let sel = doc.querySelector('#sel');
+        function selValidate(event) {
+            if (event.target.selectedIndex == 0) {
+                msg.innerHTML = 'Selecione pelo menos 1 opção';
+            }
+        }
+        sel.addEventListener('change', selValidate, false);
+
+        //Button
+        let btn = doc.querySelector('#btn');
+        function submitForm(event) {
+            event.preventDefault();
+        }
+        btn.addEventListener('click', submitForm, false);
+
+        //Image
+        let gallery = doc.querySelector('.gallery');
+        let files = doc.querySelector('#img');
+        function imgPreview(event) {
+            gallery.innerHTML = '';
+            let files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                if (files[i].size > 300000) {
+                    alert('very large image');
+                } else {
+                    let reader = new FileReader();
+                    reader.onload = function (event) {
+                        let urlImg = event.target.result;
+                        let newImg = doc.createElement('img');
+                        newImg.setAttribute("src", urlImg);
+                        newImg.style = 'width: 100px;margin: 5px;';
+                        gallery.appendChild(newImg);
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+            }
+        }
+        files.addEventListener('change', imgPreview, false);
+
+    })(window, document);
+
+</script>
+
+</html>

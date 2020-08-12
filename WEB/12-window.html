@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dom</title>
+
+    <style type="text/css">
+
+    </style>
+
+
+    <script>
+        //Janela
+        //https://www.w3schools.com/js/js_window.asp
+        function abrirPopUp() {
+            janela = window.open('http://www.google.com', 'nova_janela', 'width=100, height=50')
+        }
+
+        function fecharPopUp() {
+            janela.close()
+        }
+
+        //Tela
+        https: //www.w3schools.com/js/js_window_screen.asp
+            document.write('<h2>Tela</h2>')
+        document.write('Largura da tela da janela: ' + window.screen.width + '<br>')
+        document.write('Altura da tela da janela: ' + window.screen.height + '<br>')
+        document.write('Largura disponível da tela da janela: ' + window.screen.availWidth + '<br>')
+        document.write('Altura disponível da tela da janela: ' + window.screen.availHeight + '<br>')
+        document.write('Profundidade de cor da tela da janela: ' + window.screen.colorDepth + '<br>')
+        document.write('Profundidade de pixel da tela da janela: ' + window.screen.pixelDepth + '<br>')
+
+        //Localização
+        //https://www.w3schools.com/js/js_window_location.asp
+        function mudarPagina(pagina) {
+            window.location.href = pagina
+        }
+
+        //Tempo
+        function escrever() {
+            document.write('teste <br>')
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <!--Janela-->
+    <h2>Janela</h2>
+    <button onclick="abrirPopUp()">Abrir Janela</button>
+    <button onclick="fecharPopUp()">Fechar Janela</button>
+    <button onclick="window.print()">Imprimir</button>
+    <button <hr>
+		
+		<!--Janela-->
+		<h2>Localização</h2>
+		<button onclick="mudarPagina('http://www.google.com')">Mudar Pagina</button>
+    <hr>
+
+    <!--Tempo-->
+    <h2>Tempo</h2>
+    <button onclick="setTimeout(escrever,1000)">setTimeout</button>
+    <button onclick="setInterval(escrever,1000)">setTimeout</button>
+    <hr>
+
+
+
+
+
+
+
+</body>
+
+</html>

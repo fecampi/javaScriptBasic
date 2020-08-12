@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dom</title>
+
+		<style type="text/css">
+
+			.vermelho{
+				background: #FF0000;
+				color: #FFF;
+				width: 100px;
+				height: 100px;
+
+			}
+
+			.verde{
+				background: #00FF00;
+				color: #FFF;
+				width: 110px;
+				height: 110px;
+			}
+			
+
+
+		</style>
+
+
+
+
+		<script>
+			function acao(){
+				//Exibir
+				console.log("ID: "+ document.getElementById('id').value)
+				console.log("Class[0]: "+ document.getElementsByClassName("classe")[0].value)
+				console.log("Class[1]: "+ document.getElementsByClassName("classe")[1].value)
+				console.log("Quantidade de inputs: "+ document.getElementsByTagName('input').length)
+				console.log("nome: "+ document.getElementsByName("nome")[0].value)
+				console.log(document.querySelector('input[name=nome]'))
+				console.log(document.querySelectorAll('input'))
+
+			}
+
+			function modificaFundo(corDeFundo) {
+				document.getElementById('quadrado').style.background = corDeFundo 
+
+				//Muda estilo, outros estilos no site
+				//https://www.quanzhanketang.com/jsref/dom_obj_style.html
+			}
+
+			function modificaCss(estilo){
+				document.getElementById("css").className = estilo
+			}
+
+
+			function mudaConteudo(conteudo){
+				document.getElementById('tituloh6').innerHTML = conteudo
+			}
+
+			//Criar Elemento
+			function criaElemento(){
+				var elemento = document.createElement('div')
+				elemento.style.height = '100px'
+				elemento.style.width ='100px'
+				elemento.style.background ='#FF0000'
+				elemento.style.color = '#FFF'
+
+				var textElement= document.createTextNode("Texto")
+				elemento.appendChild(textElement)
+
+				document.body.appendChild(elemento)
+
+			}
+
+			//remover
+
+
+		</script>
+		
+
+
+		
+	</head>
+
+	<body id='quadrado'>
+
+		
+		<h6>Entrada - Função Acao</h6>
+		<input placeholder="classe e id" type="text" class="classe" id="id"/>
+		<input placeholder="classe"type="text" class="classe"/>
+		<input placeholder="nome"type="text" name="nome"/>
+		<button onclick="acao()">Ação</button>
+		<hr>
+
+		<h6>Modificar Fundo - Função ModificaFundo</h6>
+		<button type="button" onclick="modificaFundo('#FF0000')">Vermelho</button>
+		<button type="button" onclick="modificaFundo('#FFFFFF')">Branco</button>
+		<button type="button" onclick="modificaFundo('#0000FF')">Azul</button>
+		<hr>
+
+		<h6>Modificar Fundo - Função Modifica Css</h6>
+		<button type="button" onclick="modificaCss('vermelho')">Vermelho</button>
+		<button type="button" onclick="modificaCss('verde')">Verde</button>	
+		<div id="css" class="verde"></div>
+		<hr>
+
+		<h6 id='tituloh6'>Modificar Titulo</h6>
+		<button type="button" onclick="mudaConteudo('Muda Titulo - A')">A</button>
+		<button type="button" onclick="mudaConteudo('Muda Titulo - B')">B</button>
+		<hr>	
+
+
+		<h6> Criar elemento</h6>
+		<button type="button" onclick="criaElemento()">Cria Elemento</button>
+
+
+	
+
+
+
+	
+	</body>
+	</html>
+
+

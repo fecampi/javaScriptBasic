@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Requisições assíncronas</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+		<!-- script -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+
+
+
+
+		<script>
+	
+			$(document).ready(() => {
+				
+				//Apertando o botão
+				$('button').on('click', () => {
+
+					
+					//Carregando
+					$('#conteudo').html('<h1>carregando...</h1>')
+
+					$.ajax({
+		                type: "GET",
+		                url: "filmes.xml",
+		                dataType: "xml",
+		                success: function (xml) {
+
+		                //Limpa pagina
+						$('#novalista').remove()
+
+						//Cria nova lista
+						$('#lista').append("<div id='novalista'></div>")	
+
+                   		$(xml).find('filme').each(function () {
+                   		
+                   			
+                   			//Titulo
+							$('#novalista').append("<p><strong>Titulo: </strong>" + $(this).find('titulo').text() +". </p>")
+ 
+							
+							//Cria separação
+							$('#novalista').append('<hr>')
+				
+                     
+                    });
+                },
+						
+
+						
+					})	
+
+				})
+			})
+
+		</script>
+
+	</head>
+
+	<body>
+		
+		<nav class="navbar navbar-light bg-light mb-4">
+			<div class="container">
+				<div class="navbar-brand mb-0 h1">
+					<h3>Catálogo de filmes</h3>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container" id="lista">
+			<div class="row mb-5">
+				<div class="col">
+					<button type="button" class="btn btn-success">Listar filmes</button>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

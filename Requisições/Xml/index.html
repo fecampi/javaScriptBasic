@@ -1,0 +1,110 @@
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Catálogo de filmes</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+		<script src="xmltojson.js"></script>
+		<script>
+			function getFilmes() {
+				let xmlHttp = new XMLHttpRequest();
+				xmlHttp.open('GET', 'http://localhost/Requisicao/RequisicaoXml/filmes.xml')
+
+				xmlHttp.onreadystatechange = () => {
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+						
+						let XMLFilmes = xmlHttp.responseText			
+						let parser = new DOMParser()
+
+						//xml para documento
+						domFilmes = parser.parseFromString(XMLFilmes, 'text/xml')
+
+						//XmltoJson
+						jsonFilmes = xmlToJson(domFilmes)
+
+				
+						//Para cada filme
+						for(let i in jsonFilmes['filmes']['filme']) {
+							let item = jsonFilmes['filmes']['filme'][i]
+
+							//Cria linha
+							let divRow = document.createElement('div')
+							divRow.className = 'row'
+							document.getElementById('lista').appendChild(divRow)
+
+							//Cria coluna
+							let divCol = document.createElement('div')
+							divCol.className = 'col'
+							divRow.appendChild(divCol)
+
+							//Cria titulo
+							let p1 = document.createElement('p')
+							p1.innerHTML = '<strong>Título:</strong> ' + item['titulo']['#text']
+							divCol.appendChild(p1)
+
+							//Cria genero
+							let genero = ''
+							for(let g in item.genero) {
+								if(genero) genero += ', '
+
+								genero += item.genero[g]['#text']
+							}
+
+							//Cria genero
+							let p3 = document.createElement('p')
+							p3.innerHTML = '<strong>Gênero:</strong> ' + genero
+							divCol.appendChild(p3)
+
+							//Cria elenco
+							let elenco = ''
+							for(let e in item.elenco.ator) {
+								if(elenco) elenco += ', '
+
+								elenco += item.elenco.ator[e]['#text']
+							}
+							let p4 = document.createElement('p')
+							p4.innerHTML = '<strong>Elenco:</strong> ' + elenco
+							divCol.appendChild(p4)
+
+							//Cria data de lançamento
+							let p5 = document.createElement('p')
+							p5.innerHTML = '<strong>Data de lançamento:</strong> ' + item.dataLancamento['#text'] + ' (' + item.dataLancamento['@attributes']['pais'] + ')'
+							divCol.appendChild(p5)
+
+							//Cria separação
+							let hr = document.createElement('hr')
+							divCol.appendChild(hr)
+						}
+
+					}
+
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 404) {
+						//Erro
+					}
+				}
+
+				xmlHttp.send()
+			}
+		</script>
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-light bg-light mb-4">
+			<div class="container">
+				<div class="navbar-brand mb-0 h1">
+					<h3>Catálogo de filmes</h3>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container" id="lista">
+			<div class="row mb-5">
+				<div class="col">
+					<button type="button" class="btn btn-success" onclick="getFilmes()">Listar filmes</button>
+				</div>
+			</div>
+
+			
+		</div>
+	</body>
+</html>

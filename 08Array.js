@@ -66,6 +66,7 @@ console.log('Filter: ' + entrada.filter((elem, ind, obj) => (typeof elem == "str
 
 //ForEach
 entrada = [0, "Felipe", { 'age': 18 }, null];
+entrada.forEach((elem, ind, obj) => (console.log(elem)))
 
 
 //IndexOf

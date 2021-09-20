@@ -1,4 +1,28 @@
 //-----Programação Assíncrona--------
+
+//Tratar funções que podem estar disponiveis agora no futuro ou nunca;
+//Estados(Aguardando,Sucesso, Falha ou rejeitada)
+
+
+let promisse0 = new Promise((resolve, reject) => {
+    const FLAG = 5;
+    if(FLAG ==5)
+    resolve("Deu tudo certo")
+    else
+    reject(error("Deu algo errado"));
+});
+
+
+promisse0.then((response)=>{
+    console.log(response)
+})
+.catch((error)=>{
+    console.log("ERRO :",error);
+})
+
+
+
+
 //(2)Promises(forma mais sofisticada do callbacks)
 function enviarEmail(corpo, para){
     return new Promise((resolve, reject) => {
@@ -15,9 +39,9 @@ function enviarEmail(corpo, para){
 
 console.log("Inicio!");
         enviarEmail("Olá, como vai?","Fulano@fulano.com").then((dados) => {
-            console.log("SUCESSO: Tempo:" + dados.time +" to:"+dados.email)
-        }).catch(err => {
-            console.log("FRACASSO: "+err);
+            console.log(dados)
+        }).catch(error => {
+            console.log(error);
         }) 
 console.log("FIM");
 

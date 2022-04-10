@@ -1,31 +1,30 @@
+const addNumber = (x, y) => {
 
-		var pessoas = Array()
+	const xIsNotNumber = typeof x !== 'number'
+	const yIsNotNumber = typeof y !== 'number'
 
-		pessoas[1] = Array()
-		pessoas[1]['nome'] = 'Felipe'
-		pessoas[1]['idade'] = 44
+	console.log("INICIO")
+	if (xIsNotNumber && yIsNotNumber) {
+		throw new TypeError('x e y precisam ser números.');
+	}
+	console.log("PASSO_1")
+	if (xIsNotNumber) {
+		throw new TypeError('x precisa ser número.');
+	}
 
-		function getPessoa(n) {
+	console.log("PASSO_2")
+	if (yIsNotNumber) {
+		throw new TypeError('y precisa ser número.');
+	}
+	console.log("PASSO_3")
+	return x + y;
+}
 
-			try {
-				console.log('Nome: ' + pessoas[n]['nome'] + ' / Idade: ' + pessoas[n]['idade'])
-			} catch (erro) {
-				tratarErro()
-				//Se quiser interromper
-				//throw new Error(document.write('interrompe<br>'))	
-				console.log('Tratou erro')
-
-			} finally {
-				console.log('Erro ou não passa aqui')
-			}
-			console.log('Acabou')
-
-
-		}
-
-		function tratarErro() {
-			console.log('--Programa de tratamento de Erro')
-		}
-
-		getPessoa(0)
-
+try {
+	const number = addNumber('1', 2)
+	console.log("O numero é",number);
+} catch (error) {
+	console.log(error);
+} finally {
+	console.log("finally: Executa sempre no fim!!")
+}

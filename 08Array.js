@@ -52,6 +52,12 @@ entrada = [5, 1, 2, 3, 4, 5];
 let entrada1 = [1, 2];
 console.log('length: ' + entrada.length);
 
+
+//Desestruturação
+const [xa, , xb, ...rest] = entrada
+console.log("Desestruturação:", xa, xb)
+console.log("resto", rest)
+
 //Concat
 entrada = [5, 1, 2, 3, 4, 5];
 console.log('conct:' + entrada.concat(entrada1))
@@ -66,8 +72,9 @@ console.log('Filter: ' + entrada.filter((elem, ind, obj) => (typeof elem == "str
 
 //ForEach
 entrada = [0, "Felipe", { 'age': 18 }, null];
-entrada.forEach((elem, ind, obj) => (console.log(elem)))
-
+entrada.forEach((item) => {
+    console.log(item)
+});
 
 //IndexOf
 entrada = [5, 1, 2, 'n', 4, 5];
@@ -168,9 +175,20 @@ newArray = arr.reduce((total, next) => total + next);
 console.log('SOMA: ' + newArray);
 
 //Filter Pares
-newArray = arr.filter((item)=> item % 2 === 0);
+newArray = arr.filter((item) => item % 2 === 0);
 console.log('PARES: ' + newArray);
 
 //Procurar algo.
 newArray = arr.find((item) => item === 4);
 console.log('BUSCA: ' + newArray);
+
+/*
+Primitivos (imutáveis) = string, number, boolean, undefined, null
+Referencia (mutável) -> array, object, function
+*/
+
+let a = [1, 2, 3]
+let b = a
+b.push(4)
+console.log(a)
+// a = [1,2,3,4]

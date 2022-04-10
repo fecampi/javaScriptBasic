@@ -23,17 +23,22 @@ document.write('<h1 color="Yellow"><font color="Yellow">Olá ' + nomeprompt + ',
 //Saída(Console)
 console.log(name)
 
-//Null
+//Null -> não aponta pra local nenhum na memória 
 let vazia = null;
 
-//undefined
+//undefined -> não aponta pra local nenhum na memória
 var indefinida = undefined;
 
 //Inteiros:
 let number = 1;
+let number1 = parseInt('1');
+let number1 = Number('1');
+
 
 //Decimais:
 let pi = 3.14;
+let number2 = parseFloat('5.1');
+let number2 = Number('5.1');
 
 //Booleanos:
 let verdadeiro = true;
@@ -46,11 +51,20 @@ let texto = 'Esse é meu 1º texto';
 var txt1 = "John";
 var txt2 = "Doe";
 var txt3 = txt1 + " " + txt2;
+//pode re-declarar 
 var txt1 = "What a very ";
 txt1 += "nice day";
 
 //Array:
 let arr = ["fruta", "carro", 1, 'força'];
+
+//trocando variáveis
+let varA = 'A'; // B
+let varB = 'B'; // C
+let varC = 'C'; // A
+
+[varA, varB, varC] = [varB, varC, varA]
+
 
 //Objeto ou JSON):
 let obj = {

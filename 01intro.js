@@ -10,8 +10,8 @@ this.alert('This')
 //Alert
 alert("Esse é um alerta!");
 
-//Confirm
-confirm("Deseja mesmo apagar este dado? \n Esse dado será excluido!")
+//Confirm return True or False
+const confirma = confirm("Deseja mesmo apagar este dado? \n Esse dado será excluido!")
 
 //Prompt
 prompt("Qual sua data de nascimento?","dd/mm/yyyy");

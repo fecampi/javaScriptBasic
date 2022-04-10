@@ -10,9 +10,6 @@ if (age > 18) {
 }
 
 
-//Operador Ternário
-(age >= 18) ? console.log('Ele é maior de idade') : console.log('Ele é menor de idade');
-
 
 //Switch
 let year = 15;
@@ -31,3 +28,15 @@ switch (year) {
         console.log("Mês Inválido!");
         break;
 }
+
+//Operador Ternário
+(age >= 18)
+    ? console.log('Ele é maior de idade')
+    : console.log('Ele é menor de idade');
+
+
+
+//valor padrão
+const colorUser = null 
+const colorDefault = colorUser || 'black';
+console.log(colorDefault)

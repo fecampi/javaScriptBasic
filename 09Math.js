@@ -1,4 +1,25 @@
 
+//numbers
+var num = 10
+var decimal = 10.3233
+var notNumber = 11 + "1"
+
+// converter em string binaria
+var num1 = num.toString(2)
+
+//fixar casas para exibir 10.3233 -> 10.32
+var num2 = decimal.toFixed(2)
+
+//conferir se é inteiro
+var num3 = Number.isInteger(num)
+
+//converter para numero inteiro
+var num4 = parseFloat(decimal.toFixed(0))
+var numa = Number(decimal.toFixed(0))
+
+
+//math
+
 //valor de Pi
 var math1 = Math.PI //
 
@@ -34,6 +55,9 @@ var math11 = Math.min(0, 150, 30, 20, -8, -200)
 
 //retorna um número aleatório entre 0 (inclusive) e 1 (exclusivo)
 var math12 = Math.random()
+
+//retorna um número aleatório entre 10 (inclusive) e 5 (exclusivo)
+var math12 = Math.round(Math.random() * (10 - 5) + 5)
 
 
 console.log(math12)

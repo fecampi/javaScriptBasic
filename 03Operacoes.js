@@ -8,7 +8,8 @@
 	/ 	// Divisão
 	% 	// De módulo (restante da divisão)
 	++ 	// Incremento
-	- 	// Decremento
+	-- 	// Decremento
+	%   // Resto da divisão
 */
 
 

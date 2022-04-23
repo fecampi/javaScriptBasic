@@ -1,6 +1,11 @@
 const Pessoa =  require('./Pessoa.js')
 const Funcionario =  require('./Funcionario');
-const Visitante =  require('./Visitante');
+const Visitante = require('./Visitante');
+
+
+
+
+
 
 
 let entrada = Array()

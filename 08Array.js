@@ -1,4 +1,4 @@
-//Array Formal
+//Array Formal com construtor
 let myArr = new Array("thiago", "webdesign", 10);
 console.log('Array Formal:' + myArr)
 
@@ -27,6 +27,11 @@ var lista_produtos = Array("Pão", "Queijo", "Açucar", "Farinha")
 var lista_carros = ["Fusca", "Gol", "Corsa", "Palio"]
 var lista_numeros = [1, 40, 19, 5]
 
+//remover elemento do Array
+var listaDelete = [1, 2, 3, 4]
+delete listaDelete[0]
+console.log("Delete:", listaDelete)
+
 //Array multidimensional
 var lista_coisas = Array(lista_produtos, lista_carros)
 
@@ -46,6 +51,11 @@ entrada.forEach((remover, ind) => {
 }
 );
 console.log('remover: ' + entrada);
+
+//copia
+const colors = ['Blue', 'red', 'green']
+const colorsNey = ['yellow', ...colors]
+console.log("ColorsNey: ", colorsNey)
 
 //Quantidade de componentes do array
 entrada = [5, 1, 2, 3, 4, 5];
@@ -105,7 +115,13 @@ console.log('map e push: ' + mapFinal)
 
 //Pop(remove o ultimo)
 entrada = [1, 2, 3];
-console.log('pop: ' + entrada.pop());
+removedPop = entrada.pop()
+console.log('pop: ' + removedPop, entrada);
+
+//shift(remove do começo)
+entrada = [1, 2, 3];
+removedShift =  entrada.shift();
+console.log('pop: ' + removedShift, entrada);
 
 //Some(condição existe ?)
 entrada = [1, 2, 3];
@@ -122,12 +138,6 @@ console.log('reduceX: ' + entrada.reduce((v1, v2) => v1 - v2));
 //reduceRight(operações com o elemento atual e outros elementos <-)
 entrada = [1, 2, 3];
 console.log('reduceR: ' + entrada.reduceRight((v1, v2) => v1 - v2));
-
-//shift(retira o primeiro elemento de um array e exibe o valor)
-entrada = [1, 2, 3];
-console.log('Antes shift: ' + entrada);
-console.log('shif: ' + entrada.shift());
-console.log('Após shift: ' + entrada);
 
 //unshift(Inseri valores no início do array e exibe a quantidade no final
 entrada = [1, 2, 3];

@@ -68,6 +68,7 @@ const dataBrasil = formataData(data);
 console.log(dataBrasil);
 
 
+//Tratamento de erro
 function retonaHora(data) {
 	if (data && !(data instanceof Date)) {
 	  throw new TypeError('Esperando instância de Date.');

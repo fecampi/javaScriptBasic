@@ -9,12 +9,12 @@ const addNumber = (x, y) => {
 	}
 	console.log("PASSO_1")
 	if (xIsNotNumber) {
-		throw new TypeError('x precisa ser número.');
+		throw new Error('x precisa ser número.');
 	}
 
 	console.log("PASSO_2")
 	if (yIsNotNumber) {
-		throw new TypeError('y precisa ser número.');
+		throw new Error('y precisa ser número.');
 	}
 	console.log("PASSO_3")
 	return x + y;

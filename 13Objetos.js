@@ -26,14 +26,11 @@ let person2 = {
   ...person1,
   age: 18
 }
-// Assign
-let person3 = Object.assign({},person2)
-
+//Copiando com  Assign
+let person3 = Object.assign({}, person2)
 
 console.log(person1["name"]);
 console.log(person3.age);
-
-//copiando
 
 
 //Objeto Literal Unico
@@ -108,61 +105,6 @@ let carroL = {
 carroL.mostrar()
 
 
-// defineProperty and defineProperties
-function Product(name, price) {
-  this.name = name;
-  this._price = price
-
-  // //definindo um objeto
-  // Object.defineProperty(this, 'price', {
-  //   enumerable: true, //enumeráveis
-  //   value: price, 
-  //   writable: true, // alterável
-  //   configurable: true // configurável
-  // });
-
-  //para definir mais de um
-  Object.defineProperties(this,
-    {
-      'price': {
-        enumerable: true, //enumeráveis
-        configurable: true, // configurável,
-        get: function () {
-          return this._price
-        },
-        set: function (value) {
-          if (typeof value == 'number') {
-            this._price = value
-          }
-          return
-        }
-      },
-      'name': {
-        enumerable: true, //enumeráveis
-        value: name,
-        writable: true, // alterável
-        configurable: true // configurável
-      }
-    }
-  );
-
-
-}
-
-const p1 = new Product('IPhone', 1000);
-
-p1.price = 1600
-p1.price = "Not Number"
-//travar o objeto
-Object.freeze(p1)
-p1.name = "Android"
-console.log(Object.keys(p1));
-for (let key in p1) {
-  console.log(`KEY:${key}, VALUE:${p1[key]}`)
-}
-
-
-
 //ObjetoFactory:
 //Uso: Esconder implementações da interface
 //Exemplo: Encapsulamento de operações
@@ -181,44 +123,132 @@ let carro3 = new CarroFactory('Amarelo')
 carro3.mostrar()
 
 
-
 //Prototype
-//Criar Objeto
-function carioca(name, func) {
+//Criar Objeto 
+function Product(name, price) {
   this.name = name;
-  this.friends = [];
-  this.func = func;
-}
+  this._price = price;
 
-//Criar Atributos Imutaveis do objeto
-carioca.prototype.city = 'RJ';
-
-//Criar Funções Imutaveis do objeto 
-carioca.prototype.salario = function () {
-  if (this.func === 'manager') {
-    return 3000;
-  } else if (this.func === 'user') {
-    return 100;
+    //pouco performático
+  this.print = function () {
+    console.log(`Name:${name} / Price:${price}`)
   }
+
+  Object.defineProperties(this,
+      {
+          'price': {
+              enumerable: true, //enumeráveis
+              configurable: true, // configurável,
+              get: function () {
+                  return this._price
+              },
+              set: function (value) {
+                  if (typeof value == 'number') {
+                      this._price = value
+                  }
+                  return
+              }
+          },
+          'name': {
+              enumerable: true, //enumeráveis
+              value: name,
+              writable: true, // alterável
+              configurable: true // configurável
+          }
+      }
+  );
+
+
 }
 
-//Prototype
-//Criar Objeto
-function carioca(name, func) {
-  this.name = name;
-  this.friends = [];
-  this.func = func;
+//Criar Atributos Imutáveis do objeto
+Product.prototype.store = "First"
+
+//Criar Funções Imutáveis do objeto (Mais performático)
+Product.prototype.aumento = function (value) {
+  this.price += value;
+};
+Product.prototype.desconto = function (value) {
+  this.price -= value;
+};
+
+Product.prototype.printName = function () {
+  console.log(`Name:${this.name} / Price:${this.price}`)
 }
 
 //Criar Entidades
-let obj = new carioca('Thiago', 'manager');
-obj.friends.push('Juliet');
-obj.friends.push('Wilian');
+//p1 e p2 compartilham o__proto__ salario de User(Melhorando a performance)
+const p1 = new Product('IPhone', 1000);
+const p2 = new Product('IPhone', 1000);
+//Chaves
+const keys = Object.keys(p1)
+console.log("KEYS", keys)
 
-let obj2 = new carioca('Thais', 'user');
-console.log(obj);
-console.log(obj2);
-console.log(obj2.salario());
+//valores
+const values = Object.values(p1)
+console.log("VALUES", values)
+
+//Chaves e valores
+console.log("KEY AND VALUES:", Object.entries(p1))
+p1.price = 1600
+p1.price = "Not Number"
+
+
+//travar o objeto
+Object.freeze(p1)
+p1.name = "Android"
+console.log(Object.keys(p1));
+for (let key in p1) {
+  console.log(`KEY:${key}, VALUE:${p1[key]}`)
+}
+
+
+//Aproveitando o prototype de Product
+let obj3 = {
+  Origin: "Brazil",
+  name: "watch"
+}
+Object.setPrototypeOf(obj3, Product.prototype)
+obj3.printName()
+
+
+//Cria o objeto e seta o prototype
+let obj4 = Object.create(Product.prototype)
+obj4.name = "cap"
+obj4.printName()
+
+let obj5 = Object.create(Product.prototype, {
+  name: { value: "handbag" }
+})
+obj5.printName()
+
+
+// Herança
+function Shirt(name, price, material, estoque) {
+  Product.call(this, name, price);
+  this.material = material;
+
+  Object.defineProperty(this, 'estoque', {
+      enumerable: true,
+      configurable: false,
+      get: function () {
+          return estoque;
+      },
+      set: function (valor) {
+          if (typeof valor !== 'number') return;
+          estoque = valor;
+      }
+  });
+}
+Shirt.prototype = Object.create(Product.prototype);
+Shirt.prototype.constructor = Shirt;
+
+
+const shirt = new Shirt('Nike', 13, 'cotton', 5);
+shirt.estoque = 100;
+console.log(shirt);
+
+
 
 
 /* Transformar objeto em Global(exportação ideal para reutilizar em outro arquivo)
@@ -227,14 +257,12 @@ console.log(obj2.salario());
  
       //Codigo Script
  
-      win.carioca = carioca;
+      win.User = User;
     })(window, document)
-    console.log(this.carioca)
+    console.log(this.User)
     */
 
 
-
-console.log("oii")
 
 
 

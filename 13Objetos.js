@@ -128,12 +128,26 @@ carro3.mostrar()
 function Product(name, price) {
   this.name = name;
   this._price = price;
+  this._color = undefined;
 
     //pouco performático
   this.print = function () {
     console.log(`Name:${name} / Price:${price}`)
   }
 
+  //Definindo uma propriedade
+  Object.defineProperty(this, 'color', {
+    enumerable: true,
+    configurable: false,
+    get: function () {
+        return this._color
+    },
+    set: function (value) {
+      this._color = value
+    }
+});
+
+//Definindo varias propriedades
   Object.defineProperties(this,
       {
           'price': {
@@ -165,13 +179,6 @@ function Product(name, price) {
 Product.prototype.store = "First"
 
 //Criar Funções Imutáveis do objeto (Mais performático)
-Product.prototype.aumento = function (value) {
-  this.price += value;
-};
-Product.prototype.desconto = function (value) {
-  this.price -= value;
-};
-
 Product.prototype.printName = function () {
   console.log(`Name:${this.name} / Price:${this.price}`)
 }
@@ -244,9 +251,11 @@ Shirt.prototype = Object.create(Product.prototype);
 Shirt.prototype.constructor = Shirt;
 
 
-const shirt = new Shirt('Nike', 13, 'cotton', 5);
+const shirt = new Shirt('Nike', 13, 'cotton');
 shirt.estoque = 100;
 console.log(shirt);
+
+//Polimorfismo
 
 
 

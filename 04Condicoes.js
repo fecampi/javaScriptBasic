@@ -10,6 +10,11 @@ if (age > 18) {
 }
 
 
+//Operador Ternário
+(age >= 18)
+    ? console.log('Ele é maior de idade')
+    : console.log('Ele é menor de idade');
+
 
 //Switch
 let year = 15;
@@ -29,10 +34,7 @@ switch (year) {
         break;
 }
 
-//Operador Ternário
-(age >= 18)
-    ? console.log('Ele é maior de idade')
-    : console.log('Ele é menor de idade');
+
 
 
 

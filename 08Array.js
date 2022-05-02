@@ -9,7 +9,7 @@ console.log('Array Literal:' + myArr2)
 //consultar dado do array
 console.log('Consultar dado do array:' + myArr2[2].age)
 
-//Array Assossiativo
+//Array Associativo
 let myArr3 = { name: 'felipe', age: 35 }
 console.log('Array Assossiativo:' + myArr3)
 
@@ -145,7 +145,7 @@ console.log('Antes unshift: ' + entrada);
 console.log('unshif(valor do tamanho do array aṕos inserir): ' + entrada.unshift(0));
 console.log('Após unshift: ' + entrada);
 
-//Slice(pega os numeros entre os indices)
+//Slice(pega os números entre os indices)
 entrada = [1, 2, 3, 6, 7, 8, 10, 28];
 console.log('slice:' + entrada.slice(2, 4))
 
@@ -153,9 +153,9 @@ console.log('slice:' + entrada.slice(2, 4))
 
 console.log('sort:' + entrada.sort())
 
-//Ordenação Númerica
+//Ordenação Numérica
 entrada = [6, 3, 5, 1, 4, 2, 9];
-console.log('Ordenação Númerica' + entrada.sort(ordenaNumeros))
+console.log('Ordenação Numérica' + entrada.sort(ordenaNumeros))
 function ordenaNumeros(a, b) {
     return a - b
 }
@@ -176,7 +176,7 @@ console.log("toString(formato texto):" + saida)
 //Operações
 const arr = [1, 2, 3, 4, 5, 8, 9];
 
-//SOMA COM INDICE 
+//SOMA COM ÍNDICE 
 var newArray = arr.map((item, index) => item + index);
 console.log('MAP: ' + newArray);
 

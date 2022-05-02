@@ -83,7 +83,6 @@ function Product(name, price) {
     console.log(`KEY:${key}, VALUE:${p1[key]}`)
   }
   
-  
   //Aproveitando o prototype de Product
   let obj3 = {
     Origin: "Brazil",

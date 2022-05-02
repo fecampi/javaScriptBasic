@@ -58,7 +58,7 @@ function soma2() {
 }
 console.log(soma2(7, 5, 6, 3, 'texto'));
 
-//Parametros Default(opcionais) ---- 
+//Parâmetros Default(opcionais) ---- 
 function nameIdade(name = 'Mario', idade = 22) {
     console.log(`name: ${name}, Idade: ${idade}`);
 }

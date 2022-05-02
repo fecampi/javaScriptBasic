@@ -4,7 +4,7 @@ console.log(window.outerWidth);
 //escopo global
 window.alert("Oi");
 
-//Substuindo windows com o This
+//Substituindo windows com o This
 this.alert('This')
 
 //Alert

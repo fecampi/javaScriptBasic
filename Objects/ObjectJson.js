@@ -1,17 +1,17 @@
-var nome= "Felipe Ferreira";
-var idade= 20;
+var nome = "Felipe Ferreira";
+var idade = 20;
 var empresa = "TesteInfo";
 
 //Forma comum.
-var user= {
-    nome:nome,
+var user = {
+    nome: nome,
     idade: idade,
     empresa: empresa
 }
 console.log(user)
 
 //Forma encurtada.
-var encurtado= {
+var encurtado = {
     nome,
     idade,
     empresa
@@ -20,16 +20,16 @@ console.log(encurtado)
 
 
 //Desestruturação 
-var endereco ={
+var endereco = {
     rua: "Engenheiro Miguel Fernandez",
     cidade: "Yolopólis",
     cep: "2560000"
 }
-var {rua, cidade} = endereco;//Com a desestruturação ele cria a variável com o nome do valor.
+var { rua, cidade } = endereco;//Com a desestruturação ele cria a variável com o nome do valor.
 console.log(` Endereço: ${rua}, ${cidade}.`)
 
 //Json com objeto(2 Objetos)
-var user2 ={
+var user2 = {
     nome,
     idade,
     empresa,
@@ -39,7 +39,7 @@ console.log(user2)
 
 
 //Spread(Objeto+Atributos)
-var user3 ={
+var user3 = {
     nome,
     idade,
     empresa,
@@ -48,22 +48,22 @@ var user3 ={
 console.log(user3)
 
 //Metodo Find
-var product1= {
+var product1 = {
     name: "Pão",
     preco: 6.50
 }
 
-var product2= {
+var product2 = {
     name: "Leite",
     preco: 7.50
 }
 
-var product3= {
+var product3 = {
     name: "Queijo",
     preco: 4.50
 }
 
-var product4= {
+var product4 = {
     name: "Achocolatado",
     preco: 3.50
 }

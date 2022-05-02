@@ -63,8 +63,6 @@ function createPersonPerformance(name, surname) {
 }
 
 
-
-
 const p2 = createPersonPerformance('Felipe', 'Campinho');
 p2.print();
 

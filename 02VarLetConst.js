@@ -1,6 +1,6 @@
 
 
-//comentario
+//comentário
 
 /*
 Varias linhas
@@ -12,14 +12,14 @@ var name = 'felipe';
 //constante
 const NAME = 'felipe'
 
-//variavel global, local e de função{}
+//variável global, local e de função{}
 let sobrenome = 'Campinho'
 
-//Entrada
-var nomeprompt = prompt('Digite o seu nome:')
+//Entrada (Somente navegador)
+var nomePrompt = prompt('Digite o seu nome:')
 // -- Saída --
 //Saída(Documento)
-document.write('<h1 color="Yellow"><font color="Yellow">Olá ' + nomeprompt + ', tudo bem? </font> Esse e amarelo </h1>')
+document.write('<h1 color="Yellow"><font color="Yellow">Olá ' + nomePrompt + ', tudo bem? </font> Esse e amarelo </h1>')
 //Saída(Console)
 console.log(name)
 
@@ -32,15 +32,15 @@ var indefinida = undefined;
 //Inteiros:
 let number = 1;
 let number1 = parseInt('1');
-let number1 = Number('1');
+let number2 = Number('1');
 
 
 //Decimais:
 let pi = 3.14;
-let number2 = parseFloat('5.1');
-let number2 = Number('5.1');
+let number3 = parseFloat('5.1');
+let number4 = Number('5.1');
 
-//Booleanos:
+//Boolianos:
 let verdadeiro = true;
 let falso = false;
 
@@ -68,7 +68,7 @@ let varC = 'C'; // A
 
 //Objeto ou JSON):
 let obj = {
-    prop1: 'thiago',
+    prop1: 'Thiago',
     prop2: 'carro',
     arr: [1, 2, 3, 3],
 };

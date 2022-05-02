@@ -42,7 +42,7 @@ function getDiaSemanaTexto(diaSemana) {
   return diasSemana[diaSemana];
 }
 
-function getNomeMes(numeroMes) {
+function getNameMonth(numeroMes) {
   const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maior', 'junho', 
     'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
   return meses[numeroMes];
@@ -52,7 +52,7 @@ function getNomeMes(numeroMes) {
 function formataData(data) {
 	const diaSemanaTexto = getDiaSemanaTexto(data.getDay());
 	const dia = zeroAEsquerda(data.getDate());
-	const mesTexto = getNomeMes(data.getMonth())
+	const mesTexto = getNameMonth(data.getMonth())
 	const mes = data.getMonth()+1
 	const ano = zeroAEsquerda(data.getFullYear());
 	const hora = zeroAEsquerda(data.getHours());
@@ -69,7 +69,7 @@ console.log(dataBrasil);
 
 
 //Tratamento de erro
-function retonaHora(data) {
+function getData(data) {
 	if (data && !(data instanceof Date)) {
 	  throw new TypeError('Esperando instância de Date.');
 	}
@@ -87,7 +87,7 @@ function retonaHora(data) {
   }
   
   try {
-	const hora = retonaHora(data);
+	const hora = getData(data);
 	console.log(hora);
   } catch(e) {
 	// Tratar erro

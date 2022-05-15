@@ -12,7 +12,7 @@ const viewHour = () => {
 const timer = setInterval(() => viewHour(), 1000);
 
 //Encerra em 3000ms
-setTimeout(() => {
+const timerEnd = setTimeout(() => {
     console.log('Clear Interval!');
     clearInterval(timer);
 }, 3000);

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Request</title>
+  <script>
+    document.addEventListener('click', e => {
+      const el = e.target;
+      const tag = el.tagName.toLowerCase();
+      const href = el.getAttribute('href');
+      if (tag === 'a') {
+        e.preventDefault();
+        loadPage(href);
+      }
+    });
+
+    const insertPage = (response) => {
+      const result = document.querySelector('.result');
+      result.innerHTML = response;
+    }
+
+    const loadPage = async (href) => {
+
+      try {
+        const response = await fetch(href);
+        if (response.status !== 200) {
+          throw new Error('ERROR 404!')
+        };
+        const html = await response.text()
+        insertPage(html)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <section class="container">
+    <a href="pagina1.html">Página 1</a>
+    <a href="pagina2.html">Página 2</a>
+    <div class="result"></div>
+  </section>
+</body>
+
+</html>

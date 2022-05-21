@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Request</title>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
-    axios('filmes.json')
-      .then(response => loadElements(response.data));
+    fetch('filmes.json')
+      .then(resposta => resposta.json())
+      .then(json =>  loadElements(json));
+
 
     const loadElements = (json) => {
       const table = document.createElement('table');

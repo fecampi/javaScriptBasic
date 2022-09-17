@@ -50,7 +50,7 @@ let { n1, ...ns } = nomes
 console.log(n1, ns)
 
 //Função
-function mostrar({ preco: p, detalhes: det }) {
+function mostrar({ preco: p, detalhes: det } ={}) {
 	console.log(p, det)
 }
 

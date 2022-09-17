@@ -1,0 +1,24 @@
+{
+  "name": "javascriptbasic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01intro.js",
+  "scripts": {
+    "test": "jest",
+    "test:silent": "jest --watchAll --silent --noStackTrace",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fecampi/javaScriptBasic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fecampi/javaScriptBasic/issues"
+  },
+  "homepage": "https://github.com/fecampi/javaScriptBasic#readme",
+  "dependencies": {
+    "jest": "^29.0.3"
+  }
+}

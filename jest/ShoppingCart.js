@@ -1,6 +1,10 @@
-class Shopping_itens {
+var events = require("events");
+
+class ShoppingCart {
   constructor() {
     this._items = new Array();
+    this.eventEmitter = new events.EventEmitter();
+    this.on();
   }
   addItem(item) {
     if (Array.isArray(this._items)) {
@@ -20,6 +24,7 @@ class Shopping_itens {
     return this._items;
   }
   removeItem(index) {
+    this.eventEmitter.emit("removeItem", this.items[index].name);
     this._items.splice(index, 1);
   }
 
@@ -30,6 +35,12 @@ class Shopping_itens {
     console.log("Carrinho de compras foi limpo...");
     this._items.length = 0;
   }
+
+  on(event, callback) {
+    this.eventEmitter.on(event, value => {
+      callback(value);
+    });
+  }
 }
 
-module.exports = Shopping_itens;
+module.exports =  ShoppingCart;

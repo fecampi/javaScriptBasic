@@ -8,7 +8,12 @@ const fakeCreateShoppingCartWithProducts = () => {
   const product1 = new Product("Camiseta", 10);
   const product2 = new Product("Caneta", 1);
   shoppingCart.addItem(product1);
+  //remover camiseta
+  shoppingCart.removeItem(0);
+  //Adicionar camiseta
+  shoppingCart.addItem(product1);
   shoppingCart.addItem(product2);
+
   return { shoppingCart, product1, product2 };
 };
 
